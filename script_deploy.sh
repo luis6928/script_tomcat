@@ -15,5 +15,5 @@ export AWS_DEFAULT_REGION=us-east-1
 
 aws cloudformation deploy \
 --template-file main.yml \
---stack-name "tomcats" \
+--stack-name "tomcat" \
 --capabilities CAPABILITY_NAMED_IAM
