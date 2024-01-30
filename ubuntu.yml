@@ -241,6 +241,11 @@ Resources:
       Tags:
         - Key: Name
           Value: !Ref AWS::StackName
+  Outputs:
+    DNSPublica:
+      Description: DNS publica de mi instancia EC2
+      Value: !Sub |
+        !GetAtt EC2Instance.PublicDnsName        
   SecurityGroup:
     Type: AWS::EC2::SecurityGroup
     Properties:
