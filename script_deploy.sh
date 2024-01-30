@@ -17,3 +17,8 @@ aws cloudformation deploy \
 --template-file main.yml \
 --stack-name "tomcat" \
 --capabilities CAPABILITY_NAMED_IAM
+if [ $? -eq 0 ]; then
+aws cloudformation list-exports \
+--profile awsbootstrap \
+--query "Exports[?Name=='DNSPublica'].Value"
+fi
