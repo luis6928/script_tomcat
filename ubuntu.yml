@@ -236,6 +236,19 @@ Resources:
           systemctl enable tomcat
 
           ufw allow 8080
+
+          apt install default-jdk -y
+          apt install maven -y
+  
+          cd /opt
+          git clone https://github.com/DavidHormigoRamirez/springholamundo.git
+  
+          cd springholamundo
+          mvn clean package
+
+          cp target/springholamundo.jar /opt/tomcat/webapps/
+
+          echo "La aplicación ha sido instalada en: /opt/tomcat/webapps/springholamundo.jar"
           # Esta tiene que serla ultima instrucción
           /opt/aws/bin/cfn-signal -e $? --stack ${AWS::StackName} --resource EC2Instance --region ${AWS::Region}
       Tags:
