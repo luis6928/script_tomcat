@@ -237,7 +237,17 @@ Resources:
 
           ufw allow 8080
 
-          
+          apt install gradle -y
+
+          git clone https://github.com/DavidHormigoRamirez/springholamundo
+
+          cd springholamundo/ 
+
+          sudo chmod +x gradlew
+
+          ./gradlew build
+
+          ./gradlew war
 
           # Esta tiene que serla ultima instrucción
           /opt/aws/bin/cfn-signal -e $? --stack ${AWS::StackName} --resource EC2Instance --region ${AWS::Region}
