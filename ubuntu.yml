@@ -253,11 +253,7 @@ Resources:
           /opt/aws/bin/cfn-signal -e $? --stack ${AWS::StackName} --resource EC2Instance --region ${AWS::Region}
       Tags:
         - Key: Name
-          Value: !Ref AWS::StackName
-  Outputs:
-    DNSPublica:
-      Description: DNS publica de mi instancia EC2
-      Value: !GetAtt EC2Instance.PublicDnsName        
+          Value: !Ref AWS::StackName      
   SecurityGroup:
     Type: AWS::EC2::SecurityGroup
     Properties:
