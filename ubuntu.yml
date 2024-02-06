@@ -178,6 +178,8 @@ Resources:
 
           apt update -y
 
+          apt install openjdk-17-jdk -y
+
           apt install default-jdk -y
 
           wget https://dlcdn.apache.org/tomcat/tomcat-10/v10.1.18/bin/apache-tomcat-10.1.18.tar.gz -P /tmp
@@ -212,7 +214,7 @@ Resources:
           User=tomcat
           Group=tomcat
 
-          Environment="JAVA_HOME=/usr/lib/jvm/java-1.11.0-openjdk-amd64"
+          Environment="JAVA_HOME=/usr/lib/jvm/java-1.17.0-openjdk-amd64"
           Environment="JAVA_OPTS=-Djava.security.egd=file:///dev/urandom"
           Environment="CATALINA_BASE=/opt/tomcat"
           Environment="CATALINA_HOME=/opt/tomcat"
