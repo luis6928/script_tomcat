@@ -14,12 +14,12 @@ sudo chown -R tomcat:tomcat /opt/tomcat/
 sudo chmod -R u+x /opt/tomcat/bin
 
 # Insertar usuarios en el archivo tomcat-users.xml
-sudo bash -c 'cat >> /opt/tomcat/conf/tomcat-users.xml <<EOF
-<role rolename="manager-gui" />
-<user username="manager" password="test" roles="manager-gui" />
-<role rolename="admin-gui" />
-<user username="admin" password="test" roles="manager-gui,admin-gui" />
-EOF'
+sudo sed -i '/<\/tomcat-users>/i\
+<role rolename="manager-gui" \/>\
+<user username="manager" password="test" roles="manager-gui" \/>\
+<role rolename="admin-gui" \/>\
+<user username="admin" password="test" roles="manager-gui,admin-gui" \/>' /opt/tomcat/conf/tomcat-users.xml
+
 
 # Comentar la línea de Valve en el archivo manager/META-INF/context.xml
 sudo sed -i '/<Valve className="org.apache.catalina.valves.RemoteAddrValve"/s/^/<!--/;/<Valve className="org.apache.catalina.valves.RemoteAddrValve"/s/$/-->/' /opt/tomcat/webapps/manager/META-INF/context.xml
