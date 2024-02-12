@@ -196,16 +196,12 @@ Resources:
           
           
           # Comentar la línea de Valve en el archivo manager/META-INF/context.xml
-          sudo sed -i '/<Valve className="org.apache.catalina.valves.RemoteAddrValve"/s/^/<!--/;/<Valve className="org.apache.catalina.valves.RemoteAddrValve"/s/$/-->/' /opt/tomcat/webapps/manager/META-INF/context.xml
-          
-          # Comentar la línea de Manager en el archivo manager/META-INF/context.xml
-          sudo sed -i '/<Manager/s/^/<!--/;/<Manager/s/$/-->/' /opt/tomcat/webapps/manager/META-INF/context.xml
+          sudo sed -i '/<Valve className="org.apache.catalina.valves.RemoteAddrValve"/s/^/<!--/' /opt/tomcat/webapps/manager/META-INF/context.xml
+          sudo sed -i '/<Manager/ i\ -->' /opt/tomcat/webapps/manager/META-INF/context.xml
           
           # Comentar la línea de Valve en el archivo host-manager/META-INF/context.xml
-          sudo sed -i '/<Valve className="org.apache.catalina.valves.RemoteAddrValve"/s/^/<!--/;/<Valve className="org.apache.catalina.valves.RemoteAddrValve"/s/$/-->/' /opt/tomcat/webapps/host-manager/META-INF/context.xml
-          
-          # Comentar la línea de Manager en el archivo host-manager/META-INF/context.xml
-          sudo sed -i '/<Manager/s/^/<!--/;/<Manager/s/$/-->/' /opt/tomcat/webapps/host-manager/META-INF/context.xml
+          sudo sed -i '/<Valve className="org.apache.catalina.valves.RemoteAddrValve"/s/^/<!--/' /opt/tomcat/webapps/host-manager/META-INF/context.xml
+          sudo sed -i '/<Manager/ i\ -->' /opt/tomcat/webapps/host-manager/META-INF/context.xml
           
           # Crear y configurar el servicio de systemd para Tomcat
           sudo bash -c 'cat > /etc/systemd/system/tomcat.service <<EOF
@@ -215,16 +211,20 @@ Resources:
           
           [Service]
           Type=forking
+          
           User=tomcat
           Group=tomcat
+          
           Environment="JAVA_HOME=/usr/lib/jvm/java-1.11.0-openjdk-amd64"
           Environment="JAVA_OPTS=-Djava.security.egd=file:///dev/urandom"
           Environment="CATALINA_BASE=/opt/tomcat"
           Environment="CATALINA_HOME=/opt/tomcat"
           Environment="CATALINA_PID=/opt/tomcat/temp/tomcat.pid"
           Environment="CATALINA_OPTS=-Xms512M -Xmx1024M -server -XX:+UseParallelGC"
+          
           ExecStart=/opt/tomcat/bin/startup.sh
           ExecStop=/opt/tomcat/bin/shutdown.sh
+          
           RestartSec=10
           Restart=always
           
@@ -246,6 +246,7 @@ Resources:
           
           # Permitir el tráfico en el puerto 8080 a través del firewall
           sudo ufw allow 8080
+          
           apt install gradle -y
 
           git clone https://github.com/DavidHormigoRamirez/springholamundo
