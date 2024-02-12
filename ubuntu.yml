@@ -248,6 +248,21 @@ Resources:
           
           # Permitir el tráfico en el puerto 8080 a través del firewall
           sudo ufw allow 8080
+
+          apt install gradle -y
+
+          git clone https://github.com/DavidHormigoRamirez/springholamundo.git
+
+          cd springholamundo/
+
+          sudo chmod +x gradlew
+
+          sudo ./gradlew build
+
+          sudo ./gradlew war
+
+          sudo mv build/libs/holamundo-0.0.1-SNAPSHOT.war /opt/tomcat/webapps/luisholamundo.war
+          
           # Esta tiene que serla ultima instrucción
           /opt/aws/bin/cfn-signal -e $? --stack ${AWS::StackName} --resource EC2Instance --region ${AWS::Region}
       Tags:
