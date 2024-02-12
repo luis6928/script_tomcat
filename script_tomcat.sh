@@ -65,7 +65,7 @@ sudo systemctl daemon-reload
 sudo systemctl start tomcat
           
 # Verificar el estado de Tomcat
-sudo systemctl status tomcat
+# sudo systemctl status tomcat
           
 # Habilitar Tomcat para que se inicie automáticamente al arrancar
 sudo systemctl enable tomcat
