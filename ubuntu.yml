@@ -247,7 +247,7 @@ Resources:
           # Permitir el tráfico en el puerto 8080 a través del firewall
           sudo ufw allow 8080
           
-          apt install gradle -y
+          sudo apt install gradle -y
 
           git clone https://github.com/DavidHormigoRamirez/springholamundo
 
