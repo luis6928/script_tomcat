@@ -14,7 +14,7 @@ export AWS_SESSION_TOKEN=
 export AWS_DEFAULT_REGION=us-east-1
 
 aws cloudformation deploy \
---template-file main.yml \
+--template-file ubuntu.yml \
 --stack-name "tomcat" \
 --capabilities CAPABILITY_NAMED_IAM
 if [ $? -eq 0 ]; then
